@@ -22,7 +22,38 @@ const exampleDinosaurData = require("../data/dinosaurs");
  *  getTallestDinosaur(dinosaurs);
  *  //> { Brachiosaurus: 98.43 }
  */
-function getTallestDinosaur(dinosaurs) {}
+function getTallestDinosaur(dinosaurs) {
+  let tallest = {};
+  let currentDino = dinosaurs[0];
+  for (const dino of dinosaurs) {
+    if (dino.lengthInMeters > currentDino.lengthInMeters) {
+      currentDino = dino;
+    }
+  }
+  tallest[currentDino.name] = currentDino.lengthInMeters * 3.281;
+  return tallest;
+
+  // //decalre a var, assign it an empty object
+  // let tallestDino = {};
+  // //create a var (tallest), assign it 0
+  // let currentDino = dinosaurs[0];
+  // //for i loop through dinosaurs
+  // for (let i = 1; i < dinosaurs.length; i++) {
+  //   //let var assign it dinosaurs[i]
+  //    dino = dinosaurs[i];
+  //   //if dino.lenghtInMeters is >= currentDino
+  //   if (dino.lengthInMeters > currentDino.lengthInMeters) {
+  //     //then currentDino = dino.lengthInMeters
+  //     currentDino = dino;
+  //     //outside of the loop convert meters to feet
+  //     let lenghtInFeet = currentDino.lengthInMeters * 3.281;
+  //     //return the first var with the currentDino dino name and length in feet
+  //     tallestDino[currentDino.name] = lenghtInFeet;
+  //   }
+  // }
+  // //ouside the loop return the var
+  // return tallestDino;
+}
 
 /**
  * getDinosaurDescription()
@@ -44,7 +75,22 @@ function getTallestDinosaur(dinosaurs) {}
  *  getDinosaurDescription(dinosaurs, "incorrect-id");
  *  //> "A dinosaur with an ID of 'incorrect-id' cannot be found."
  */
-function getDinosaurDescription(dinosaurs, id) {}
+function getDinosaurDescription(dinosaurs, id) {
+  //create a var, assign it an empty string
+  let description;
+  //for of loop thorugh our dinosaurs array
+  for (const dino of dinosaurs) {
+    let mya = dino.mya[dino.mya.length - 1];
+    // if dino id and mya has one value
+    if (dino.dinosaurId === id) {
+      //then return the description
+      description = `${dino.name} (${dino.pronunciation})\n${dino.info} It lived in the ${dino.period} period, over ${mya} million years ago.`;
+    } else if (!id) {
+      description = `A dinosaur with an ID of 'incorrect-id' cannot be found.`;
+    }
+  }
+  return description;
+}
 
 /**
  * getDinosaursAliveMya()
