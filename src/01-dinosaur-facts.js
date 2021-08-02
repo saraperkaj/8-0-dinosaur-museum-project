@@ -23,36 +23,27 @@ const exampleDinosaurData = require("../data/dinosaurs");
  *  //> { Brachiosaurus: 98.43 }
  */
 function getTallestDinosaur(dinosaurs) {
+  //declare a var, assign it an empty obj
   let tallest = {};
+  //create var, assign it disnosaurs at the first index
   let currentDino = dinosaurs[0];
+  //if the dinosaurs arent there
+  if (dinosaurs.length === 0) {
+    //return the tallest
+    return tallest;
+  }
+  //for of loop through our dinosaurs array incrementing by 1
   for (const dino of dinosaurs) {
+    //if the dinos height is bigger than our current dinos height
     if (dino.lengthInMeters > currentDino.lengthInMeters) {
+      //then our current dino is now the dino that was taller
       currentDino = dino;
     }
   }
+  //the current dinos name in our obj is equal to the height in meters times 3.281 to make it feet
   tallest[currentDino.name] = currentDino.lengthInMeters * 3.281;
+  //return the tallest
   return tallest;
-
-  // //decalre a var, assign it an empty object
-  // let tallestDino = {};
-  // //create a var (tallest), assign it 0
-  // let currentDino = dinosaurs[0];
-  // //for i loop through dinosaurs
-  // for (let i = 1; i < dinosaurs.length; i++) {
-  //   //let var assign it dinosaurs[i]
-  //    dino = dinosaurs[i];
-  //   //if dino.lenghtInMeters is >= currentDino
-  //   if (dino.lengthInMeters > currentDino.lengthInMeters) {
-  //     //then currentDino = dino.lengthInMeters
-  //     currentDino = dino;
-  //     //outside of the loop convert meters to feet
-  //     let lenghtInFeet = currentDino.lengthInMeters * 3.281;
-  //     //return the first var with the currentDino dino name and length in feet
-  //     tallestDino[currentDino.name] = lenghtInFeet;
-  //   }
-  // }
-  // //ouside the loop return the var
-  // return tallestDino;
 }
 
 /**
@@ -76,20 +67,17 @@ function getTallestDinosaur(dinosaurs) {
  *  //> "A dinosaur with an ID of 'incorrect-id' cannot be found."
  */
 function getDinosaurDescription(dinosaurs, id) {
-  //create a var, assign it an empty string
-  let description;
   //for of loop thorugh our dinosaurs array
   for (const dino of dinosaurs) {
     let mya = dino.mya[dino.mya.length - 1];
     // if dino id and mya has one value
     if (dino.dinosaurId === id) {
       //then return the description
-      description = `${dino.name} (${dino.pronunciation})\n${dino.info} It lived in the ${dino.period} period, over ${mya} million years ago.`;
-    } else if (!id) {
-      description = `A dinosaur with an ID of 'incorrect-id' cannot be found.`;
+      return `${dino.name} (${dino.pronunciation})\n${dino.info} It lived in the ${dino.period} period, over ${mya} million years ago.`;
     }
   }
-  return description;
+  //if else then return the error msg
+  return `A dinosaur with an ID of 'incorrect-id' cannot be found.`;
 }
 
 /**
@@ -117,7 +105,11 @@ function getDinosaurDescription(dinosaurs, id) {
  *  getDinosaursAliveMya(dinosaurs, 65, "unknown-key");
  *  //> ["WHQcpcOj0G"]
  */
-function getDinosaursAliveMya(dinosaurs, mya, key) {}
+function getDinosaursAliveMya(dinosaurs, mya, key) {
+  //declare a var, assign it an empty arr
+  //for of loop through dino
+  // if
+}
 
 module.exports = {
   getTallestDinosaur,
