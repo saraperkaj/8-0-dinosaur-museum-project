@@ -69,6 +69,7 @@ function getTallestDinosaur(dinosaurs) {
 function getDinosaurDescription(dinosaurs, id) {
   //for of loop thorugh our dinosaurs array
   for (const dino of dinosaurs) {
+    //
     let mya = dino.mya[dino.mya.length - 1];
     // if dino id and mya has one value
     if (dino.dinosaurId === id) {
@@ -106,11 +107,34 @@ function getDinosaurDescription(dinosaurs, id) {
  *  //> ["WHQcpcOj0G"]
  */
 function getDinosaursAliveMya(dinosaurs, mya, key) {
-  //declare a var, assign it an empty arr
-  //for of loop through dino
-  // if
+  //Returns an array of dinosaurs who were alive at the given `mya` (i.e. “millions of years ago”) value. If a `key` is provided, returns the value of that key for each dinosaur alive at that time. Otherwise, returns the ID.
+  //set an empty array variable to push the dinosaur names into
+  let dinos = [];
+  //loop through the dinosaur array to check if mya value matches mya parameter.
+  for (const dino of dinosaurs) {
+    //if the the mya given is in the dino mya and the key is name
+    if (dino.mya.includes(mya) && key === "name") {
+      //then push the dino name
+      dinos.push(dino.name);
+      //if the length of the mya array is 1 and the value of mya given is the mya or is one less than the mya
+    } else if (
+      dino.mya.length === 1 &&
+      (dino.mya - 1 === mya || dino.mya === mya)
+    ) {
+      //push the id into array
+      dinos.push(dino.dinosaurId);
+      //if the mya is included in the dino mya
+    } else if (dino.mya.includes(mya)) {
+      //push the id
+      dinos.push(dino.dinosaurId);
+    } else if (dino.mya[0] >= mya && dino.mya[1] <= mya) {
+      dinos.push(dino.dinosaurId);
+    }
+  }
+  //return the array
+  return dinos;
 }
-
+getDinosaursAliveMya(exampleDinosaurData, 65);
 module.exports = {
   getTallestDinosaur,
   getDinosaurDescription,
